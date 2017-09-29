@@ -508,8 +508,8 @@ namespace OLDD_camera
 		private Dictionary<object, IButton> buttons = new Dictionary<object, IButton>();
 		private ToolbarTypes types = new ToolbarTypes();
 
-		private ToolbarManager(object realToolbarManager) {
-			this.realToolbarManager = realToolbarManager;
+		private ToolbarManager(object _realToolbarManager) {
+			realToolbarManager = _realToolbarManager;
 
 			addMethod = ToolbarTypes.getMethod(types.iToolbarManagerType, "add");
 		}
@@ -529,13 +529,13 @@ namespace OLDD_camera
 		private Delegate realMouseEnterHandler;
 		private Delegate realMouseLeaveHandler;
 
-		internal Button(object realButton, ToolbarTypes types) {
-			this.realButton = realButton;
-			this.types = types;
+		internal Button(object _realButton, ToolbarTypes _types) {
+			realButton = _realButton;
+			types = _types;
 
-			realClickHandler = attachEventHandler(types.button.onClickEvent, "clicked", realButton);
-			realMouseEnterHandler = attachEventHandler(types.button.onMouseEnterEvent, "mouseEntered", realButton);
-			realMouseLeaveHandler = attachEventHandler(types.button.onMouseLeaveEvent, "mouseLeft", realButton);
+			realClickHandler = attachEventHandler(_types.button.onClickEvent, "clicked", _realButton);
+			realMouseEnterHandler = attachEventHandler(_types.button.onMouseEnterEvent, "mouseEntered", _realButton);
+			realMouseLeaveHandler = attachEventHandler(_types.button.onMouseLeaveEvent, "mouseLeft", _realButton);
 		}
 
 		private Delegate attachEventHandler(EventInfo @event, string methodName, object realButton) {
@@ -693,8 +693,8 @@ namespace OLDD_camera
 	}
 
 	public abstract partial class MouseMoveEvent : EventArgs {
-		internal MouseMoveEvent(IButton button) {
-			this.button = button;
+		internal MouseMoveEvent(IButton _button) {
+			button = _button;
 		}
 	}
 

@@ -11,7 +11,7 @@ namespace OLDD_camera.Camera
     internal class PartCamera : BaseKspCamera
     {
 
-        private static HashSet<int> _usedId = new HashSet<int>();
+        private static HashSet<int> usedId = new HashSet<int>();
         private const int ButtonSize = 25;
 
         private LineRenderer scanningRay;
@@ -84,7 +84,7 @@ namespace OLDD_camera.Camera
             }
         }
 
-        public PartCamera(Part thisPart, string resourceScanning, string bulletName, int hits, string rotatorZ, string rotatorY, string zoommer, float stepper, string cameraName, int allowedScanDistance, int windowSize, bool isOnboard, bool isLookAtMe, bool isLookAtMeAutoZoom, bool isFollowMe, bool isTargetCam, float isFollowMeOffsetX, float isFollowMeOffsetY, float isFollowMeOffsetZ, float targetOffset, string windowLabel = "Camera") : base(thisPart, (float)windowSize, windowLabel)
+        public PartCamera(Part thisPart, string resourceScanning, string bName, int hits, string rotZ, string rotY, string _zoommer, float _stepper, string cameraName, int _allowedScanDistance, int windowSize, bool isOnboard, bool isLookAtMe, bool isLookAtMeAutoZoom, bool isFollowMe, bool isTargetCam, float isFollowMeOffsetX, float isFollowMeOffsetY, float isFollowMeOffsetZ, float targetOffset, string windowLabel = "Camera") : base(thisPart, (float)windowSize, windowLabel)
         {
             List<string> list = resourceScanning.Split(new char[]
             {
@@ -92,13 +92,13 @@ namespace OLDD_camera.Camera
             }).ToList<string>();
             resourceName = list[0];
             resourceUsage = int.Parse(list[1]);
-            this.bulletName = bulletName;
-            this.rotatorZ = GameObjectExtension.GetChild(partGameObject.gameObject, rotatorZ);
-            this.rotatorY = GameObjectExtension.GetChild(partGameObject.gameObject, rotatorY);
-            this.zoommer = GameObjectExtension.GetChild(partGameObject.gameObject, zoommer);
+            bulletName = bName;
+            rotatorZ = GameObjectExtension.GetChild(partGameObject.gameObject, rotZ);
+            rotatorY = GameObjectExtension.GetChild(partGameObject.gameObject, rotY);
+            zoommer = GameObjectExtension.GetChild(partGameObject.gameObject, _zoommer);
             camObject = GameObjectExtension.GetChild(partGameObject.gameObject, cameraName);
-            this.stepper = stepper;
-            this.allowedScanDistance = allowedScanDistance;
+            stepper = _stepper;
+            allowedScanDistance = _allowedScanDistance;
             lastZoom = CurrentZoom;
             IsOnboard = isOnboard;
             IsLookAtMe = isLookAtMe;
@@ -110,12 +110,12 @@ namespace OLDD_camera.Camera
             IsFollowMeOffsetZ = isFollowMeOffsetZ;
             TargetOffset = targetOffset;
             GameEvents.onGameSceneLoadRequested.Add(new EventData<GameScenes>.OnEvent(LevelWasLoaded));
-            GetCurrentBullets(bulletName, hits);
+            GetCurrentBullets(bName, hits);
         }
 
         private void LevelWasLoaded(GameScenes data)
         {
-            PartCamera._usedId = new HashSet<int>();
+            PartCamera.usedId = new HashSet<int>();
         }
 
         ~PartCamera()
@@ -166,18 +166,19 @@ namespace OLDD_camera.Camera
         public override void Deactivate()
         {
             base.Deactivate();
-            PartCamera._usedId.Remove(id);
+            if (PartCamera.usedId != null)
+                PartCamera.usedId.Remove(id);
         }
 
         private void SetFreeId()
         {
             for (int i = 1; i < 8; i++)
             {
-                if (!PartCamera._usedId.Contains(i))
+                if (!PartCamera.usedId.Contains(i))
                 {
                     id = i;
                     WindowLabel = SubWindowLabel + " " + id;
-                    PartCamera._usedId.Add(i);
+                    PartCamera.usedId.Add(i);
                     break;
                 }
             }
@@ -402,7 +403,7 @@ namespace OLDD_camera.Camera
                 if (IsLookAtMe = GUI.Toggle(new Rect(widthOffset - 2f, 256f, 84f, 20f), IsLookAtMe, "Look at Me"))
                 {
                     IsOnboard = (IsFollowMe = (IsTargetCam = false));
-                    string cameraMode = this.cameraMode;
+
                     cameraMode = "Look at Me";
                     IsFollowMeOffsetX = (IsFollowMeOffsetY = (IsFollowMeOffsetZ = 0f));
                     if (!IsLookAtMeEnabled)

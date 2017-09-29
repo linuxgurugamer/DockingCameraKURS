@@ -12,7 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 		deploy.bat = deploy.bat
 		DockingCamera.version = DockingCamera.version
 		License.txt = License.txt
-		ReadMe.md = ReadMe.md
+		README.md = README.md
 	EndProjectSection
 EndProject
 Global

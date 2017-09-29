@@ -327,7 +327,7 @@ namespace OLDD_camera.Modules
 		{
             if (!HighLogic.LoadedSceneIsFlight)
                 return;
-            if (!camera.IsActive)
+            if (camera == null || !camera.IsActive)
                 return;
 			camera.Deactivate();
 			if ( !IsEnabled)

@@ -43,7 +43,7 @@ namespace OLDD_camera
     public delegate void UpdateGUIFunction();
     public class UpdateGUIObject : MonoBehaviour
     {
-        public UpdateGUIFunction updateGUIFunction;
+        public UpdateGUIFunction updateGUIFunction = null;
         //public UpdateGUIFunction awakeFunction;
 
         //void Awake()

@@ -57,7 +57,7 @@
     <Compile Include="Camera\BaseKspCamera.cs" />
     <Compile Include="Camera\DockingCamera.cs" />
     <Compile Include="Camera\PartCamera.cs" />
-    <Compile Include="log.cs" />
+    <Compile Include="Utility\log.cs" />
     <Compile Include="Modules\DockingCameraModule.cs" />
     <Compile Include="Modules\ICamPart.cs" />
     <Compile Include="Modules\PartCameraModule.cs" />
@@ -70,8 +70,8 @@
     <Compile Include="OLDD_camera\TargetHelper.cs" />
     <Compile Include="OLDD_camera\Util.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Settings.cs" />
-    <Compile Include="ToolbarWrapper.cs" />
+    <Compile Include="Utility\Settings.cs" />
+    <Compile Include="Utility\ToolbarWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AssemblyVersion.tt">

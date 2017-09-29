@@ -16,8 +16,7 @@ namespace OLDD_camera
 		private static Rect lastWindowPosition;
 		private static Rect toolbarWindowPosition;
 		private const int WindowTextureWidth = 256;
-		public static bool WindowVisiblityOn;
-		private static bool blizzyToolbarAvailable;
+		public static bool WindowVisiblityOn = false;
 		private static bool showWindow;
 		private static bool shadersToUse0 = true;
 		private static bool shadersToUse1;
@@ -39,16 +38,15 @@ namespace OLDD_camera
 
 	    private void DockCamClickHandler()
         {
+            Log.Info("DockCamClickHandler");
             WindowVisiblityOn = !WindowVisiblityOn;
         }
 
         public void Awake()
 		{
-            dockCamToolbarButton = this;
+            dockCamToolbarButton = this;            
 
-            blizzyToolbarAvailable = ToolbarManager.ToolbarAvailable;
-
-			if (blizzyToolbarAvailable)
+			if (ToolbarManager.ToolbarAvailable)
 			{
 				toolbarButton = ToolbarManager.Instance.add("DockCamera", "dockCam");
 				toolbarButton.TexturePath = "DockingCam/Icons/DockingCamIcon";
@@ -112,7 +110,7 @@ namespace OLDD_camera
 
 		private static void OnWindowOLDD()
 		{
-			if (!showWindow)
+			if (showWindow)
 			{
 				toolbarWindowPosition.width = (256f);
 				int count = _vesselsWithCamera.Count;

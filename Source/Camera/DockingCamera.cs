@@ -485,7 +485,8 @@ namespace OLDD_camera.Camera
 		{
             if (!IsActive)
                 return;
-			DockingCamera.usedId.Remove(id);
+            if (DockingCamera.usedId != null)
+			    DockingCamera.usedId.Remove(id);
 			base.Deactivate();
 		}
 
