@@ -91,10 +91,10 @@ set textTemplatingPath="%25ProgramFiles(x86)%25\Microsoft Visual Studio\2017\Com
   </PropertyGroup>
   <PropertyGroup>
     <PostBuildEvent>
-start /D D:\Users\jbb\github\DockingCam /WAIT deploy.bat  $(TargetDir) $(TargetFileName)
+start /D D:\Users\jbb\github\DockingCameraKURS /WAIT deploy.bat  $(TargetDir) $(TargetFileName)
 
 if $(ConfigurationName) == Release (
-start /D D:\Users\jbb\github\DockingCam  /WAIT buildRelease.bat $(TargetDir) $(TargetFileName)
+start /D D:\Users\jbb\github\DockingCameraKURS /WAIT buildRelease.bat $(TargetDir) $(TargetFileName)
 )
 </PostBuildEvent>
   </PropertyGroup>
