@@ -13,24 +13,26 @@ and is able to rotate on two axes. For cameras, installed under the belly of the
 upside down) there is the mode of rotation of the image. In the CFG of the partcamera some meshes could be 
 configured for use with other camera model.
 
-All cameras have a title with its number, and also can work a few pieces at a time. Docking camera reporting its 
+All cameras have a title with its number, and also can work a few pieces at a time. Docking camera reporting its
 target on its window title.
 
 There is an experiment on part camera - a try to reproduce a surveilance (spy) activity. You need to be at a 
-distance less than 1000 m near any targetable thingie, catch it on camera's screen and targeted. press "⦿" button. 
-A ray will be shoot. If all requirements have met and there are no obstacle on ray's path - you'll should get 
-experiment results, if something wrong - you just spend one bullet.  Experiments is limited by bullets (4 yellow 
+distance less than 1000 m near any targetable thingie, catch it on camera's screen and targeted. press "⦿"
+button. 
+A ray will be shot. If all requirements have met and there are no obstacle on ray's path - you'll should get 
+experiment results, if something wrong - you just spend one bullet.  Experiments is limited by bullets (4 yellow
 balls around cam, dissapearing one by one each time). I thought it will be interesting if contracts.
 
-Camera has 3 presets of shaders (noisy TV 1960th style, TV 1980th style  and standart (color, b/w and nightvision). 
-Available via button, appearing when blizzy toolbar is installed. 
+Camera has 3 presets of shaders (noisy TV 1960th style, TV 1980th style  and standart (color, b/w and
+nightvision).  Available via button, appearing when blizzy toolbar is installed. 
 
-Also, by toolbar button you could find info about nearby cameras installed on other vessels in transmission range. 
-If camera has been activated on some vessel, but you drive other one - a new window from distant camera will appear 
-when distance from first one will become less than 2500 (or 10k (customizable)). 
+Also, by toolbar button you could find info about nearby cameras installed on other vessels in transmission
+range.  If camera has been activated on some vessel, but you drive other one - a new window from distant camera
+will appear when distance from first one will become less than 2500 (or 10k (customizable)). 
 
-If you want you can use "look at me" mode by activating it on distant camera. "Targetcam"  and "follow me" modes 
+If you want you can use "look at me" mode by activating it on distant camera. "Targetcam"  and "follow me" modes
+
 on your active vessel (set camera position using scrollers).
 
-The cameras can transmit the videostream to nearby vessels, but only at a distance of up to 2 500 meters. You can 
-change this unload range via toolbar button.
+The cameras can transmit the videostream to nearby vessels, but only at a distance of up to 2 500 meters. You 
+can change this unload range via toolbar button.
