@@ -22,6 +22,9 @@
 1.3.1.1
 	Rebuild for KSP 1.3.1 and release
 
+1.3.1.2
+	Added code to fix NullRef exception
+
 TODO
 	Add stock toolbar button
 	Enhance spycam to be a science instrument 

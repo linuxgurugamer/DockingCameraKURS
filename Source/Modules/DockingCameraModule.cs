@@ -82,7 +82,7 @@ namespace OLDD_camera.Modules
 
 		public void Activate()
 		{
-			if (!camera.IsActive)
+			if (camera != null && !camera.IsActive)
 			{
 				camera.Activate();
 				base.StartCoroutine("WhiteNoise");
@@ -91,7 +91,7 @@ namespace OLDD_camera.Modules
 
 		public void Deactivate()
 		{
-            if (!camera.IsActive)
+            if (camera == null || !camera.IsActive)
                 return;
 			base.StopCoroutine("WhiteNoise");
 			camera.Deactivate();
@@ -99,7 +99,7 @@ namespace OLDD_camera.Modules
 
 		private IEnumerator WhiteNoise()
 		{
-            while (camera.IsActive)
+            while (camera != null && camera.IsActive)
             {
                 camera.UpdateNoise();
                 yield return new WaitForSeconds(.1f);
