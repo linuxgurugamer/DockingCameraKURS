@@ -37,7 +37,10 @@ namespace OLDD_camera.Camera
 		private string lastVesselName;
 		private string windowLabelSuffix;
 
-		public Color TargetCrossColorOLDD
+        private bool isUpsideDown;
+        //private readonly GameObject camObject;
+
+        public Color TargetCrossColorOLDD
 		{
 			get
 			{
@@ -127,7 +130,9 @@ namespace OLDD_camera.Camera
 
 			if (IsAuxiliaryWindowOpen)
 			{
-				if ( part.vessel.Equals(FlightGlobals.ActiveVessel) && TargetHelper.IsTargetSelect)
+                DrawButtonsBlock(num);
+
+                if ( part.vessel.Equals(FlightGlobals.ActiveVessel) && TargetHelper.IsTargetSelect)
 				{
 					cameraData = GUI.Toggle(new Rect(num, 34f, 88f, 20f), cameraData, "Flight data");
 					rotatorState = GUI.Toggle(new Rect(num, 54f, 88f, 20f), rotatorState, "Rotator");
@@ -201,7 +206,61 @@ namespace OLDD_camera.Camera
 			base.ExtendedDrawWindowL3();
 		}
 
-		private void GetWindowLabel()
+        //float RotateX = 0;
+
+        private void DrawButtonsBlock(float widthOffset)
+        {
+            if (GUI.RepeatButton(new Rect(widthOffset, 36f, 25f, 25f), "↻")) // clockwise open circle arrow
+            {
+                RotateX++;
+                moduleDockingNodeGameObject.transform.Rotate(new Vector3(0f, 0f, 1f));
+            }
+
+            if (GUI.RepeatButton(new Rect(widthOffset + 50f, 36f, 25f, 25f), "↺")) // anticlockwise open circle arrow
+            {
+                RotateX--;
+                moduleDockingNodeGameObject.transform.Rotate(new Vector3(0f, 0f, -1f));
+            }
+            if (GUI.Button(new Rect(widthOffset, 61f, 25f, 25f), "↷")) // clockwise top semicircle arrow
+            {
+                RotateX += 90;
+                moduleDockingNodeGameObject.transform.Rotate(new Vector3(0f, 0f, 90f));
+            }
+            if (GUI.Button(new Rect(widthOffset + 50f, 61f, 25f, 25f), "↶")) // anticlockwise top semicircle arrow
+            {
+                RotateX -= 90;
+                moduleDockingNodeGameObject.transform.Rotate(new Vector3(0f, 0f, -90f));
+            }
+            if (GUI.Button(new Rect(widthOffset + 25f, 61f, 25f, 25f), "o"))
+            {
+                moduleDockingNodeGameObject.transform.Rotate(new Vector3(0f, 0f, -RotateX));
+                RotateX = 0;
+            }
+            if (RotateX > 360)
+                RotateX -= 360;
+            if (RotateX < 0)
+                RotateX += 360;
+
+            if (GUI.RepeatButton(new Rect(widthOffset, 86f, 25f, 25f), "-"))
+            {
+                CurrentZoom += 0.5f;
+                if (CurrentZoom > MaxZoom)
+                {
+                    CurrentZoom = MaxZoom;
+                }
+            }
+
+            if (GUI.RepeatButton(new Rect(widthOffset + 50f, 86f, 25f, 25f), "+"))
+            {
+                CurrentZoom -= 0.5f;
+                if (CurrentZoom < MinZoom)
+                {
+                    CurrentZoom = MinZoom;
+                }
+            }
+        }
+
+        private void GetWindowLabel()
 		{
 			if ( part.vessel.Equals(FlightGlobals.ActiveVessel))
 			{
